@@ -18,7 +18,7 @@ public class TestMain {
         LocalDate dateHired = LocalDate.of(2023, 4, 6);
         LocalDate birthDate = LocalDate.of(2003, 5, 5);
 
-        HourlyEmployee E = new HourlyEmployee(123, "Jacob Dirk", dateHired, birthDate, 40, 10);
+        HourlyEmployee E = new HourlyEmployee(123, "Jacob Dirk", dateHired, birthDate, 20, 10);
         E.displayInfo();
     }
 

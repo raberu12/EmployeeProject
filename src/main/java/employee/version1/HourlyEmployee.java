@@ -11,7 +11,6 @@ public class HourlyEmployee {
     private LocalDate empBirthDate;
     private float totalHoursWorked;
     private float ratePerHour;
-    private float salary;
 
     public HourlyEmployee() {
     }
@@ -23,6 +22,15 @@ public class HourlyEmployee {
         this.empBirthDate = empBirthDate;
         this.totalHoursWorked = totalHoursWorked;
         this.ratePerHour = ratePerHour;
+    }
+
+    public HourlyEmployee(int empID, String empName, LocalDate empDateHired, LocalDate empBirthDate, float totalHoursWorked) {
+        this.empID = empID;
+        this.empName = empName;
+        this.empDateHired = empDateHired;
+        this.empBirthDate = empBirthDate;
+        this.totalHoursWorked = totalHoursWorked;
+        this.ratePerHour = 100.00f;
     }
 
     public float getRatePerHour() {
@@ -48,7 +56,7 @@ public class HourlyEmployee {
     public void setEmpName(String empName) {
         this.empName = empName;
     }
-    
+
     public LocalDate getEmpDateHired() {
         return empDateHired;
     }
@@ -73,11 +81,13 @@ public class HourlyEmployee {
         this.totalHoursWorked = totalHoursWorked;
     }
 
-    public void computeSalary() {
+    public double computeSalary() {
         float regularHours = 40;
         float otRate = 1.5f;
         float otHours = getTotalHoursWorked() - regularHours;
+        double salary;
         salary = regularHours * getRatePerHour() + (otRate * otHours * getRatePerHour());
+        return salary; 
     }
 
     public void displayInfo() {
@@ -89,14 +99,15 @@ public class HourlyEmployee {
         System.out.println("Date of Birth: " + getEmpBirthDate().format(dateFormatter));
         System.out.println("Total Hours Worked: " + getTotalHoursWorked());
         System.out.println("Rate per Hour: " + getRatePerHour());
-
-        computeSalary();
+        
+        double salary = computeSalary();
 
         System.out.println("Salary: $" + salary);
     }
 
     @Override
     public String toString() {
+        double salary = computeSalary();
         return "HourlyEmployee{" + "empID = " + empID + ", empNam e = " + empName + ", empDateHired = " + empDateHired + ", empBirthDate = " + empBirthDate + ", totalHoursWorked = " + totalHoursWorked + ", ratePerHour = " + ratePerHour + ", salary = " + salary + '}';
     }
 
