@@ -84,10 +84,17 @@ public class HourlyEmployee {
     public double computeSalary() {
         float regularHours = 40;
         float otRate = 1.5f;
-        float otHours = getTotalHoursWorked() - regularHours;
-        double salary;
-        salary = regularHours * getRatePerHour() + (otRate * otHours * getRatePerHour());
-        return salary; 
+        float otHours;
+        float totalHoursworked = getTotalHoursWorked();
+        
+        if(totalHoursWorked <= regularHours){
+            return totalHoursWorked * getRatePerHour();
+        }else{
+            otHours = totalHoursworked - regularHours;
+            
+            double salary = (regularHours * getRatePerHour() + (otHours * otRate * getRatePerHour()));
+            return salary;
+        }
     }
 
     public void displayInfo() {
@@ -108,7 +115,10 @@ public class HourlyEmployee {
     @Override
     public String toString() {
         double salary = computeSalary();
-        return "HourlyEmployee{" + "empID = " + empID + ", empNam e = " + empName + ", empDateHired = " + empDateHired + ", empBirthDate = " + empBirthDate + ", totalHoursWorked = " + totalHoursWorked + ", ratePerHour = " + ratePerHour + ", salary = " + salary + '}';
+        return "HourlyEmployee{" + "empID = " + empID + ", empNam e = " + empName + ", "
+                + "empDateHired = " + empDateHired + ", empBirthDate = " + empBirthDate + ", "
+                + "totalHoursWorked = " + totalHoursWorked + ", ratePerHour = " + ratePerHour
+                + "salary = " + salary + '}';
     }
 
 }

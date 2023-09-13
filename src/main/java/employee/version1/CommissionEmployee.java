@@ -7,38 +7,35 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Matt
  */
-public class PieceWorkerEmployee {
+public class CommissionEmployee {
 
     private int empID;
     private String empName;
     private LocalDate empDateHired;
     private LocalDate empBirthDate;
     private float totalPiecesFinished;
+    private double totalSales;
     private float ratePerPiece;
 
-    public PieceWorkerEmployee() {
+    public CommissionEmployee() {
     }
 
-    public PieceWorkerEmployee(int empID, String empName, LocalDate empDateHired,
-            LocalDate empBirthDate,
-            float totalPiecesFinished,
-            float ratePerPiece) {
+    public CommissionEmployee(int empID, String empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, double totalSales, float ratePerPiece) {
         this.empID = empID;
         this.empName = empName;
         this.empDateHired = empDateHired;
         this.empBirthDate = empBirthDate;
         this.totalPiecesFinished = totalPiecesFinished;
+        this.totalSales = totalSales;
         this.ratePerPiece = ratePerPiece;
     }
 
-    public PieceWorkerEmployee(int empID, String empName, LocalDate empDateHired,
-            LocalDate empBirthDate, float totalPiecesFinished) {
+    public CommissionEmployee(int empID, String empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished) {
         this.empID = empID;
         this.empName = empName;
         this.empDateHired = empDateHired;
         this.empBirthDate = empBirthDate;
         this.totalPiecesFinished = totalPiecesFinished;
-        this.ratePerPiece = 50.0f;
     }
 
     public int getEmpID() {
@@ -81,6 +78,14 @@ public class PieceWorkerEmployee {
         this.totalPiecesFinished = totalPiecesFinished;
     }
 
+    public double getTotalSales() {
+        return totalSales;
+    }
+
+    public void setTotalSales(double totalSales) {
+        this.totalSales = totalSales;
+    }
+
     public float getRatePerPiece() {
         return ratePerPiece;
     }
@@ -90,13 +95,22 @@ public class PieceWorkerEmployee {
     }
 
     public double computeSalary() {
-        double salary = totalPiecesFinished * ratePerPiece;
-
-        double bonusPieces = totalPiecesFinished / 100.0;
-        double bonusAmount = bonusPieces * (ratePerPiece * 10);
-
-        salary += bonusAmount;
-
+        double commissionRate;
+        double commissionAmount;
+        double pieceAmount;
+        double salary;
+        if (getTotalSales() < 50000) {
+            commissionRate = 0.05;
+        } else if (getTotalSales() < 10000) {
+            commissionRate = 0.20;
+        } else if (getTotalSales() < 500000) {
+            commissionRate = 0.30;
+        } else {
+            commissionRate = 0.50;
+        }
+        commissionAmount = getTotalSales() * commissionRate;
+        pieceAmount = getTotalPiecesFinished() * getRatePerPiece();
+        salary = commissionAmount + pieceAmount;
         return salary;
     }
 
@@ -117,8 +131,9 @@ public class PieceWorkerEmployee {
 
     @Override
     public String toString() {
-        return "PieceWorkerEmployee{" + "empName = " + empName + ", empDateHired = " + empDateHired
-                + ", empBirthDate = " + empBirthDate + '}';
+        return "ComissionEmployee{" + "empID =" + empID
+                + ", empName =" + empName + ", "
+                + "empDateHired =" + empDateHired
+                + ", empBirthDate =" + empBirthDate + '}';
     }
-
 }

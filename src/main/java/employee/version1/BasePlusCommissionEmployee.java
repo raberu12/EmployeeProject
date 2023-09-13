@@ -7,38 +7,39 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Matt
  */
-public class PieceWorkerEmployee {
+public class BasePlusCommissionEmployee {
 
     private int empID;
     private String empName;
     private LocalDate empDateHired;
     private LocalDate empBirthDate;
     private float totalPiecesFinished;
+    private double totalSales;
     private float ratePerPiece;
+    private double baseSalary;
 
-    public PieceWorkerEmployee() {
+    public BasePlusCommissionEmployee() {
     }
 
-    public PieceWorkerEmployee(int empID, String empName, LocalDate empDateHired,
-            LocalDate empBirthDate,
-            float totalPiecesFinished,
-            float ratePerPiece) {
+    public BasePlusCommissionEmployee(int empID, String empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, double totalSales, float ratePerPiece, double baseSalary) {
         this.empID = empID;
         this.empName = empName;
         this.empDateHired = empDateHired;
         this.empBirthDate = empBirthDate;
         this.totalPiecesFinished = totalPiecesFinished;
+        this.totalSales = totalSales;
         this.ratePerPiece = ratePerPiece;
+        this.baseSalary = baseSalary;
     }
 
-    public PieceWorkerEmployee(int empID, String empName, LocalDate empDateHired,
-            LocalDate empBirthDate, float totalPiecesFinished) {
+    public BasePlusCommissionEmployee(int empID, String empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, double totalSales, float ratePerPiece) {
         this.empID = empID;
         this.empName = empName;
         this.empDateHired = empDateHired;
         this.empBirthDate = empBirthDate;
         this.totalPiecesFinished = totalPiecesFinished;
-        this.ratePerPiece = 50.0f;
+        this.totalSales = totalSales;
+        this.ratePerPiece = ratePerPiece;
     }
 
     public int getEmpID() {
@@ -81,6 +82,14 @@ public class PieceWorkerEmployee {
         this.totalPiecesFinished = totalPiecesFinished;
     }
 
+    public double getTotalSales() {
+        return totalSales;
+    }
+
+    public void setTotalSales(double totalSales) {
+        this.totalSales = totalSales;
+    }
+
     public float getRatePerPiece() {
         return ratePerPiece;
     }
@@ -89,14 +98,31 @@ public class PieceWorkerEmployee {
         this.ratePerPiece = ratePerPiece;
     }
 
+    public double getBaseSalary() {
+        return baseSalary;
+    }
+
+    public void setBaseSalary(double baseSalary) {
+        this.baseSalary = baseSalary;
+    }
+
     public double computeSalary() {
-        double salary = totalPiecesFinished * ratePerPiece;
-
-        double bonusPieces = totalPiecesFinished / 100.0;
-        double bonusAmount = bonusPieces * (ratePerPiece * 10);
-
-        salary += bonusAmount;
-
+        double commissionRate;
+        double commissionAmount;
+        double pieceAmount;
+        double salary;
+        if (getTotalSales() < 50000) {
+            commissionRate = 0.05;
+        } else if (getTotalSales() < 10000) {
+            commissionRate = 0.20;
+        } else if (getTotalSales() < 500000) {
+            commissionRate = 0.30;
+        } else {
+            commissionRate = 0.50;
+        }
+        commissionAmount = getTotalSales() * commissionRate;
+        pieceAmount = getTotalPiecesFinished() * getRatePerPiece();
+        salary = commissionAmount + pieceAmount + getBaseSalary();
         return salary;
     }
 
@@ -109,6 +135,7 @@ public class PieceWorkerEmployee {
         System.out.println("Date of Birth: " + getEmpBirthDate().format(dateFormatter));
         System.out.println("Total Pieces Finished: " + getTotalPiecesFinished());
         System.out.println("Rate per Piece: " + getRatePerPiece());
+        System.out.println("Base Salary: " + getBaseSalary());
 
         double salary = computeSalary();
 
@@ -117,8 +144,13 @@ public class PieceWorkerEmployee {
 
     @Override
     public String toString() {
-        return "PieceWorkerEmployee{" + "empName = " + empName + ", empDateHired = " + empDateHired
-                + ", empBirthDate = " + empBirthDate + '}';
+        return "BasePlusCommissionEmployee{" + "empID=" + empID + ", empName=" + empName
+                + ", empDateHired =" + empDateHired
+                + ", empBirthDate =" + empBirthDate
+                + ", totalPiecesFinished =" + totalPiecesFinished
+                + ", totalSales =" + totalSales
+                + ", ratePerPiece =" + ratePerPiece
+                + ", baseSalary =" + baseSalary + '}';
     }
 
 }
