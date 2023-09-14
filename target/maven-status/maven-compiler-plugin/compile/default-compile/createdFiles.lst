@@ -1,5 +1,10 @@
 employee\version1\HourlyEmployee.class
-employee\version1\TestMain.class
-employee\version1\CommissionEmployee.class
-employee\version1\PieceWorkerEmployee.class
+employee\version2\PieceWorkerEmployee.class
+employee\version2\BasePlusCommissionEmployee.class
 employee\version1\BasePlusCommissionEmployee.class
+employee\version2\HourlyEmployee.class
+employee\version1\CommissionEmployee.class
+employee\version2\CommissionEmployee.class
+employee\version1\PieceWorkerEmployee.class
+TestMain.class
+employee\version2\Employee.class
