@@ -7,7 +7,6 @@ package employee.version1;
 
 import java.time.LocalDate;
 
-
 /**
  *
  * @author MAGDADADADADADADADARO, MATT VINCENT
@@ -33,14 +32,14 @@ public class TestMain {
                 LocalDate.of(2023, 4, 3),
                 LocalDate.of(2003, 4, 2),
                 20, 30, 30);
-        
+
         B.displayInfo();
-        
+
         BasePlusCommissionEmployee C = new BasePlusCommissionEmployee(222, "Xander J. Cob",
                 LocalDate.of(2023, 7, 3),
                 LocalDate.of(2003, 9, 22),
                 20, 30, 30, 100);
-        
+
         C.displayInfo();
     }
 
