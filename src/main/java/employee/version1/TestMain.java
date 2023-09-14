@@ -18,27 +18,27 @@ public class TestMain {
         HourlyEmployee E = new HourlyEmployee(123, "Jacob Dirk",
                 LocalDate.of(2023, 4, 6),
                 LocalDate.of(2003, 5, 5),
-                20, 10);
+                55, 60);
 
         E.displayInfo();
 
         PieceWorkerEmployee A = new PieceWorkerEmployee(321, "Jack Stone",
                 LocalDate.of(2023, 4, 5),
                 LocalDate.of(2003, 2, 1),
-                20.0f, 30.f);
+                200.0f, 130.f);
         A.displayInfo();
 
         CommissionEmployee B = new CommissionEmployee(323, "Achille O'Neal",
                 LocalDate.of(2023, 4, 3),
                 LocalDate.of(2003, 4, 2),
-                20, 30, 30);
+                200, 130, 120);
 
         B.displayInfo();
 
         BasePlusCommissionEmployee C = new BasePlusCommissionEmployee(222, "Xander J. Cob",
                 LocalDate.of(2023, 7, 3),
                 LocalDate.of(2003, 9, 22),
-                20, 30, 30, 100);
+                2000, 150, 100, 500);
 
         C.displayInfo();
     }

@@ -93,7 +93,7 @@ public class PieceWorkerEmployee {
         double salary = getTotalPiecesFinished() * getRatePerPiece();
 
         double bonusPieces = getTotalPiecesFinished() / 100.0;
-        double bonusAmount = bonusPieces * (ratePerPiece * 10);
+        double bonusAmount = bonusPieces * (getRatePerPiece() * 10);
 
         salary += bonusAmount;
 

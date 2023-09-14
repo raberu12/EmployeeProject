@@ -107,22 +107,25 @@ public class BasePlusCommissionEmployee {
     }
 
     public double computeSalary() {
+
         double commissionRate;
         double commissionAmount;
         double pieceAmount;
         double salary;
-        if (getTotalSales() < 50000) {
+        if (getTotalSales() < 50_000) {
             commissionRate = 0.05;
-        } else if (getTotalSales() < 10000) {
+        } else if (getTotalSales() < 100_000) {
             commissionRate = 0.20;
-        } else if (getTotalSales() < 500000) {
+        } else if (getTotalSales() < 500_000) {
             commissionRate = 0.30;
         } else {
             commissionRate = 0.50;
         }
+
         commissionAmount = getTotalSales() * commissionRate;
         pieceAmount = getTotalPiecesFinished() * getRatePerPiece();
         salary = commissionAmount + pieceAmount + getBaseSalary();
+        
         return salary;
     }
 
