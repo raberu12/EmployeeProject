@@ -20,30 +20,29 @@ public class Name {
     public Name() {
     }
 
-    public Name(String title, String firstName, String middleName, String lastName, String suffix) {
+    public Name title(String title) {
         this.title = title;
+        return this;
+    }
+
+    public Name firstName(String firstName) {
         this.firstName = firstName;
-        this.middleName = middleName;
+        return this;
+    }
+
+    public Name lastName(String lastName) {
         this.lastName = lastName;
+        return this;
+    }
+
+    public Name middleName(String middleName) {
+        this.middleName = middleName;
+        return this;
+    }
+
+    public Name suffix(String suffix) {
         this.suffix = suffix;
-    }
-
-    public Name(String firstName, String middleName, String lastName, String suffix) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.suffix = suffix;
-    }
-
-    public Name(String firstName, String middleName, String lastName) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-    }
-
-    public Name(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        return this;
     }
 
     public String getLastName() {
@@ -92,15 +91,22 @@ public class Name {
 
     @Override
     public String toString() {
-        if (title == null) {
-            return String.format("%s %s %s %s", getFirstName(), getMiddleName(), getLastName(), getSuffix());
-        } else if (suffix == null) {
-            return String.format("%s %s %s", getFirstName(), getMiddleName(), getLastName());
-        }else if (middleName == null){
-            return String.format("%s %s %s", getFirstName(), getLastName());
+        StringBuilder fullName = new StringBuilder();
+        if (firstName != null) {
+            fullName.append(firstName);
         }
-
-        return String.format("%s %s %s %s %s", getTitle(), getFirstName(), getMiddleName(), getLastName(), getSuffix());
+        if (middleName != null) {
+            fullName.append(" ").append(middleName);
+        }
+        if (lastName != null) {
+            fullName.append(" ").append(lastName);
+        }
+        if (suffix != null) {
+            fullName.append(", ").append(suffix);
+        }
+        if (title != null) {
+            fullName.insert(0, title + " ");
+        }
+        return fullName.toString();
     }
-
 }
