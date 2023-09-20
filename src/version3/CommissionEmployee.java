@@ -1,4 +1,4 @@
-package employee.version2;
+package version3;
 
 import java.time.LocalDate;
 
@@ -21,7 +21,7 @@ public class CommissionEmployee extends Employee {
         this.ratePerPiece = ratePerPiece;
     }
 
-    public CommissionEmployee(int empID, String empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, double totalSales, float ratePerPiece) {
+    public CommissionEmployee(int empID, Name empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, double totalSales, float ratePerPiece) {
         super(empID, empName, empDateHired, empBirthDate);
         this.totalPiecesFinished = totalPiecesFinished;
         this.totalSales = totalSales;

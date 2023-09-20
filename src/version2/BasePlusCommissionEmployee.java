@@ -1,4 +1,4 @@
-package employee.version2;
+package version2;
 
 import java.time.LocalDate;
 

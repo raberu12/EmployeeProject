@@ -1,4 +1,4 @@
-package employee.version2;
+package version3;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,19 +10,21 @@ import java.time.format.DateTimeFormatter;
 public class Employee {
 
     private int empID;
-    private String empName;
+    private Name empName;
     private LocalDate empDateHired;
     private LocalDate empBirthDate;
 
     public Employee() {
     }
 
-    public Employee(int empID, String empName, LocalDate empDateHired, LocalDate empBirthDate) {
+    public Employee(int empID, Name empName, LocalDate empDateHired, LocalDate empBirthDate) {
         this.empID = empID;
         this.empName = empName;
         this.empDateHired = empDateHired;
         this.empBirthDate = empBirthDate;
     }
+
+    
 
     public int getEmpID() {
         return empID;
@@ -32,11 +34,11 @@ public class Employee {
         this.empID = empID;
     }
 
-    public String getEmpName() {
+    public Name getEmpName() {
         return empName;
     }
 
-    public void setEmpName(String empName) {
+    public void setEmpName(Name empName) {
         this.empName = empName;
     }
 
