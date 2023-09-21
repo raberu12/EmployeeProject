@@ -82,4 +82,18 @@ public class EmployeeRoster {
         System.out.println("EMPLOYEE #" + id + " NOT FOUND!");
         return null;
     }
+    public EmployeeRoster searchEmployee(String keyword){
+        EmployeeRoster match = new EmployeeRoster();
+        for(Employee employee : empList){
+            if (employee != null){
+                String empInfo = employee.getEmpName().toString().toLowerCase();
+                String search = keyword.toLowerCase();
+                
+                if(empInfo.contains(search) || String.valueOf(employee.getEmpID()).contains(search)){
+                    match.addEmployee(employee);
+                }
+            }
+        }
+        return match;
+    }
 }
