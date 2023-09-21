@@ -1,14 +1,9 @@
 package main.java;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//import employee.version1.*;
 import java.time.LocalDate;
+//import employee.version1.*;
 //import version2.*;
-import version3.*;
+//import version3.*;
+import version4.*;
 
 /**
  *
@@ -17,6 +12,8 @@ import version3.*;
 public class TestMain {
 
     public static void main(String[] args) {
+        
+        EmployeeRoster roster = new EmployeeRoster();
 
         Name name1 = new Name()
                 .title("Dr.")
@@ -44,31 +41,36 @@ public class TestMain {
                 LocalDate.of(2023, 4, 6),
                 LocalDate.of(2003, 5, 5),
                 10, 60);
-        E.displayInfo();
+//        E.displayInfo();
 
-        System.out.println("");
 
         PieceWorkerEmployee A = new PieceWorkerEmployee(321, name2,
                 LocalDate.of(2023, 4, 5),
                 LocalDate.of(2003, 2, 1),
                 200.0f, 130.f);
-        A.displayInfo();
-        System.out.println("");
+//        A.displayInfo();
 
         CommissionEmployee B = new CommissionEmployee(323, name3,
                 LocalDate.of(2023, 4, 3),
                 LocalDate.of(2003, 4, 2),
                 200, 130, 120);
 
-        B.displayInfo();
-        System.out.println("");
+//        B.displayInfo();
         
         BasePlusCommissionEmployee C = new BasePlusCommissionEmployee(222, name4,
                 LocalDate.of(2023, 7, 3),
                 LocalDate.of(2003, 9, 22),
                 2000, 150, 100, 500);
 
-        C.displayInfo();
+//        C.displayInfo();
+        roster.addEmployee(B);
+        roster.addEmployee(C);
+        roster.addEmployee(E);
+        roster.addEmployee(A);
+        
+        roster.displayAllEmployees();
+        
+        roster.removeEmployee(111);
     }
 
 }
