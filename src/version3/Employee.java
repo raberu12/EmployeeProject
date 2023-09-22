@@ -23,9 +23,7 @@ public class Employee {
         this.empDateHired = empDateHired;
         this.empBirthDate = empBirthDate;
     }
-
     
-
     public int getEmpID() {
         return empID;
     }

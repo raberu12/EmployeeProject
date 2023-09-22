@@ -82,18 +82,118 @@ public class EmployeeRoster {
         System.out.println("EMPLOYEE #" + id + " NOT FOUND!");
         return null;
     }
-    public EmployeeRoster searchEmployee(String keyword){
+
+    public EmployeeRoster searchEmployee(String keyword) {
         EmployeeRoster match = new EmployeeRoster();
-        for(Employee employee : empList){
-            if (employee != null){
+        for (Employee employee : empList) {
+            if (employee != null) {
                 String empInfo = employee.getEmpName().toString().toLowerCase();
                 String search = keyword.toLowerCase();
-                
-                if(empInfo.contains(search) || String.valueOf(employee.getEmpID()).contains(search)){
+
+                if (empInfo.contains(search) || String.valueOf(employee.getEmpID()).contains(search)) {
                     match.addEmployee(employee);
                 }
             }
         }
         return match;
+    }
+
+    public int countHourlyEmployee() {
+        int cnt = 0;
+        for (Employee employee : empList) {
+            if (employee instanceof HourlyEmployee) {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+
+    public int countPieceWorkerEmployee() {
+        int cnt = 0;
+        for (Employee employee : empList) {
+            if (employee instanceof PieceWorkerEmployee) {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+
+    public int CommissionEmployee() {
+        int cnt = 0;
+        for (Employee employee : empList) {
+            if (employee instanceof CommissionEmployee) {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+
+    public int BasePlusCommisionEmployee() {
+        int cnt = 0;
+        for (Employee employee : empList) {
+            if (employee instanceof BasePlusCommissionEmployee) {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+
+    public void displayEmployeeByType(String type) {
+        String displayMessage = "";
+
+        switch (type.toUpperCase().charAt(0)) {
+            case 'H':
+                displayMessage = "Displaying Hourly Employees: \n";
+                break;
+            case 'C':
+                displayMessage = "Displaying Commission Employees: \n";
+                break;
+            case 'B':
+                displayMessage = "Displaying Base Plus Commission Employees: \n";
+                break;
+            case 'P':
+                displayMessage = "Displaying Piece Worker Employees: \n";
+                break;
+            default:
+                System.out.println("Unknown employee type: " + type);
+                return;
+        }
+
+        System.out.println(displayMessage);
+
+        for (Employee employee : empList) {
+            if (employee != null) {
+                switch (type.toUpperCase().charAt(0)) {
+                    case 'H':
+                        if (employee instanceof HourlyEmployee) {
+                            employee.displayInfo();
+                            System.out.println("");
+                        }
+                        break;
+                    case 'C':
+                        if (employee instanceof CommissionEmployee) {
+                            employee.displayInfo();
+                            System.out.println("");
+                        }
+                        break;
+                    case 'B':
+                        if (employee instanceof BasePlusCommissionEmployee) {
+                            employee.displayInfo();
+                            System.out.println("");
+                        }
+                        break;
+                    case 'P':
+                        if (employee instanceof PieceWorkerEmployee) {
+                            employee.displayInfo();
+                            System.out.println("");
+                        }
+                        break;
+                }
+            }
+        }
     }
 }
