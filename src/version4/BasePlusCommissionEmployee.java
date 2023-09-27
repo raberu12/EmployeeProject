@@ -32,15 +32,18 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
         this.baseSalary = baseSalary;
     }
 
-    @Override
-    public double computeSalary() {
-        return baseSalary + super.computeSalary();
+    public void displayInfo() {
+        System.out.println(this);
     }
 
     @Override
-    public void displayInfo() {
-        System.out.println(this);
-        System.out.println("Base Salary: $" + getBaseSalary());
-        System.out.println("Salary: $" + computeSalary());
+    public String toString() {
+        return super.toString()
+                + "\nTotal Pieces Finished: " + getTotalPiecesFinished()
+                + "\nTotal Sales: " + getTotalSales()
+                + "\nRate per Piece: $" + getRatePerPiece()
+                + "\nBase Salary: $" + getBaseSalary()
+                + "\nSalary: $" + computeSalary();
+
     }
 }

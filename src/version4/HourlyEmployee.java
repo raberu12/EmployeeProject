@@ -3,6 +3,7 @@ package version4;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -64,5 +65,13 @@ public class HourlyEmployee extends Employee {
         System.out.println("Total Hours Worked: " + getTotalHoursWorked());
         System.out.println("Rate per Hour: " + getRatePerHour());
         System.out.println("Salary: $" + computeSalary());
+    }
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\nTotal Hours Worked: " + getTotalHoursWorked() +
+                "\nRate per Hour: " + getRatePerHour() +
+                "\nSalary: $" + computeSalary();
+
     }
 }

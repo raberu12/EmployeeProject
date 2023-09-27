@@ -1,6 +1,5 @@
 package version4;
 
-
 import java.time.LocalDate;
 
 /**
@@ -53,11 +52,16 @@ public class PieceWorkerEmployee extends Employee {
         return salary;
     }
 
-    @Override
     public void displayInfo() {
         System.out.println(this);
-        System.out.println("Total Pieces Finished: " + getTotalPiecesFinished());
-        System.out.println("Rate per Piece: " + getRatePerPiece());
-        System.out.println("Salary: $" + computeSalary());
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + "\nTotal Pieces Finished: " + getTotalPiecesFinished()
+                + "\nRate per piece: " + getRatePerPiece()
+                + "\nSalary: $" + computeSalary();
+
     }
 }

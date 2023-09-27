@@ -96,6 +96,7 @@ public class EmployeeRoster {
             }
         }
         return match;
+
     }
 
     public int countHourlyEmployee() {
@@ -120,7 +121,7 @@ public class EmployeeRoster {
         return cnt;
     }
 
-    public int CommissionEmployee() {
+    public int countCommissionEmployee() {
         int cnt = 0;
         for (Employee employee : empList) {
             if (employee instanceof CommissionEmployee) {
@@ -131,7 +132,7 @@ public class EmployeeRoster {
         return cnt;
     }
 
-    public int BasePlusCommisionEmployee() {
+    public int countBasePlusCommisionEmployee() {
         int cnt = 0;
         for (Employee employee : empList) {
             if (employee instanceof BasePlusCommissionEmployee) {
@@ -196,4 +197,60 @@ public class EmployeeRoster {
             }
         }
     }
+
+    public void updateEmpName(int id, String prefix, String firstName, String middleName, String lastName, String suffix) {
+        for (int i = 0; i < count; i++) {
+            if (empList[i] != null && id == empList[i].getEmpID()) {
+                Name empName = empList[i].getEmpName();
+                if (prefix != null) {
+                    empName.setTitle(prefix);
+                }
+                if (firstName != null) {
+                    empName.setFirstName(firstName);
+                }
+                if (middleName != null) {
+                    empName.setMiddleName(middleName);
+                }
+                if (lastName != null) {
+                    empName.setLastName(lastName);
+                }
+                if (suffix != null) {
+                    empName.setSuffix(suffix);
+                }
+                System.out.println("Name updated for Employee #" + id);
+                return;
+            }
+        }
+        System.out.println("Employee #" + id + "does not exist!");
+    }
+
+    public void updateEmployeeSalary(int id, double newSalary) {
+        for (int i = 0; i < count; i++) {
+            if (empList[i] != null && id == empList[i].getEmpID()) {
+                Employee employee = empList[i];
+
+                if (employee instanceof HourlyEmployee) {
+                    HourlyEmployee hourlyEmployee = (HourlyEmployee) employee;
+                    hourlyEmployee.setRatePerHour((float) (newSalary / hourlyEmployee.getTotalHoursWorked()));
+                } else if (employee instanceof CommissionEmployee) {
+                    CommissionEmployee commissionEmployee = (CommissionEmployee) employee;
+                    commissionEmployee.setRatePerPiece((float) (newSalary / commissionEmployee.getTotalPiecesFinished()));
+                } else if (employee instanceof PieceWorkerEmployee) {
+                    PieceWorkerEmployee pieceWorkerEmployee = (PieceWorkerEmployee) employee;
+                    pieceWorkerEmployee.setRatePerPiece((float) (newSalary / pieceWorkerEmployee.getTotalPiecesFinished()));
+                } else if (employee instanceof BasePlusCommissionEmployee) {
+                    BasePlusCommissionEmployee basePlusCommissionEmployee = (BasePlusCommissionEmployee) employee;
+                    basePlusCommissionEmployee.setBaseSalary(newSalary);
+                } else {
+                    System.out.println("Invalid employee type!");
+                    return;
+                }
+
+                System.out.println("Salary updated for Employee #" + id);
+                return;
+            }
+        }
+        System.out.println("Employee #" + id + " not found!");
+    }
+
 }
