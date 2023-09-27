@@ -1,9 +1,6 @@
-
 package version4;
 
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -16,7 +13,7 @@ public class HourlyEmployee extends Employee {
 
     public HourlyEmployee() {
     }
-    
+
     public HourlyEmployee(float totalHoursWorked, float ratePerHour) {
         this.totalHoursWorked = totalHoursWorked;
         this.ratePerHour = ratePerHour;
@@ -47,31 +44,27 @@ public class HourlyEmployee extends Employee {
     public double computeSalary() {
         float regularHours = 40;
         float otRate = 1.5f;
-        float otHours;
-        float totalHoursworked = getTotalHoursWorked();
+        float totalHours = getTotalHoursWorked();
 
-        if (totalHoursWorked <= regularHours) {
-            return totalHoursWorked * getRatePerHour();
-        } else {
-            otHours = totalHoursworked - regularHours;
-
-            double salary = (regularHours * getRatePerHour() + (otHours * otRate * getRatePerHour()));
-            return salary;
+        if (totalHours <= regularHours) {
+            return totalHours * getRatePerHour();
         }
+
+        float otHours = totalHours- regularHours;
+        return (regularHours * getRatePerHour()) + (otHours * otRate * getRatePerHour());
     }
+
     @Override
-    public void displayInfo(){
+    public void displayInfo() {
         System.out.println(this);
-        System.out.println("Total Hours Worked: " + getTotalHoursWorked());
-        System.out.println("Rate per Hour: " + getRatePerHour());
-        System.out.println("Salary: $" + computeSalary());
     }
+
     @Override
     public String toString() {
-        return super.toString() +
-                "\nTotal Hours Worked: " + getTotalHoursWorked() +
-                "\nRate per Hour: " + getRatePerHour() +
-                "\nSalary: $" + computeSalary();
+        return super.toString()
+                + "\nTotal Hours Worked: " + getTotalHoursWorked()
+                + "\nRate per Hour: " + getRatePerHour()
+                + "\nSalary: $" + computeSalary();
 
     }
 }

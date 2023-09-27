@@ -43,7 +43,7 @@ public class TestMain {
                 .firstName("Psalmantha")
                 .lastName("Ipong")
                 .middleName("Doble")
-                .suffix("Obsessive");
+                .suffix("II");
         
         HourlyEmployee P = new HourlyEmployee(416, name5, 
                 LocalDate.of(2023, 7,8), 

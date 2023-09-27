@@ -43,15 +43,11 @@ public class PieceWorkerEmployee extends Employee {
 
     public double computeSalary() {
         double salary = getTotalPiecesFinished() * getRatePerPiece();
-
-        double bonusPieces = getTotalPiecesFinished() / 100.0;
-        double bonusAmount = bonusPieces * (getRatePerPiece() * 10);
-
-        salary += bonusAmount;
-
-        return salary;
+        double bonusAmount = (getTotalPiecesFinished() / 100.0) * (getRatePerPiece() * 10);
+        return salary + bonusAmount;
     }
 
+    @Override
     public void displayInfo() {
         System.out.println(this);
     }

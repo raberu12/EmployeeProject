@@ -53,30 +53,21 @@ public class CommissionEmployee extends Employee {
     }
 
     public double computeSalary() {
-        double commissionRate;
-        double commissionAmount;
-        double pieceAmount;
-        double salary;
-        double bonus = 0;
-        if (getTotalSales() < 50_000) {
-            commissionRate = 0.05;
-        } else if (getTotalSales() < 100_000) {
-            commissionRate = 0.20;
-        } else if (getTotalSales() < 500_000) {
-            commissionRate = 0.30;
+        double rate = 0.05;
+
+        if (totalSales < 100_000) {
+            rate = 0.20;
+        } else if (totalSales < 500_000) {
+            rate = 0.30;
         } else {
-            commissionRate = 0.50;
+            rate = 0.50;
         }
-        if (getTotalPiecesFinished() > 100) {
-            bonus = getTotalPiecesFinished() / 100 * getRatePerPiece() * 10;
-        }
-        commissionAmount = getTotalSales() * commissionRate;
-        pieceAmount = getTotalPiecesFinished() * getRatePerPiece() + bonus;
-        salary = commissionAmount + pieceAmount;
-        return salary;
+
+        return totalSales * rate;
     }
-    
-     public void displayInfo() {
+
+    @Override
+    public void displayInfo() {
         System.out.println(this);
     }
 

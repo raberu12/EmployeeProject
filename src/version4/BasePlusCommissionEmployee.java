@@ -31,7 +31,13 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
     public void setBaseSalary(double baseSalary) {
         this.baseSalary = baseSalary;
     }
+    
+    @Override
+    public double computeSalary() {
+        return baseSalary + super.computeSalary();
+    }
 
+    @Override
     public void displayInfo() {
         System.out.println(this);
     }
@@ -39,11 +45,7 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
     @Override
     public String toString() {
         return super.toString()
-                + "\nTotal Pieces Finished: " + getTotalPiecesFinished()
-                + "\nTotal Sales: " + getTotalSales()
-                + "\nRate per Piece: $" + getRatePerPiece()
-                + "\nBase Salary: $" + getBaseSalary()
-                + "\nSalary: $" + computeSalary();
+                + "\nBase Salary: $" + getBaseSalary();
 
     }
 }
