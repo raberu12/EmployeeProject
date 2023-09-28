@@ -50,7 +50,7 @@ public class HourlyEmployee extends Employee {
             return totalHours * getRatePerHour();
         }
 
-        float otHours = totalHours- regularHours;
+        float otHours = totalHours - regularHours;
         return (regularHours * getRatePerHour()) + (otHours * otRate * getRatePerHour());
     }
 
@@ -64,7 +64,8 @@ public class HourlyEmployee extends Employee {
         return super.toString()
                 + "\nTotal Hours Worked: " + getTotalHoursWorked()
                 + "\nRate per Hour: " + getRatePerHour()
-                + "\nSalary: $" + computeSalary();
+                + "\nSalary: $" + computeSalary()
+                + "\n";
 
     }
 }

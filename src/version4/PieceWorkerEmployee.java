@@ -57,7 +57,8 @@ public class PieceWorkerEmployee extends Employee {
         return super.toString()
                 + "\nTotal Pieces Finished: " + getTotalPiecesFinished()
                 + "\nRate per piece: " + getRatePerPiece()
-                + "\nSalary: $" + computeSalary();
+                + "\nSalary: $" + computeSalary()
+                + "\n";
 
     }
 }

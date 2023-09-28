@@ -50,19 +50,25 @@ public class EmployeeRoster {
     }
 
     public void displayAllEmployees() {
-        for (Employee employee : empList) {
-            if (employee != null) {
-                employee.displayInfo();
-                System.out.println("");
+        for (Employee emp : empList) {
+            if (emp != null) {
+                StringBuilder sb = new StringBuilder();
+
+                sb.append(String.format("| %-5d", emp.getEmpID()));
+                sb.append(String.format("| %-30s", emp.getEmpName()));
+                sb.append(String.format("| %-30s|", emp.getClass().getSimpleName()));
+
+                System.out.println(sb.toString());
             }
         }
+        System.out.println("");
     }
 
     public boolean addEmployee(Employee e) {
         if (count < size) {
             empList[count] = e;
             count++;
-            System.out.println("EMPLOYEE " + e.getEmpName().getLastName() + " WITH ID #" + e.getEmpID() + " added\n");
+            System.out.println("EMPLOYEE " + e.getEmpName().getLastName() + " WITH ID #" + e.getEmpID() + " added");
             return true;
         } else {
             System.out.println("Roster is full.");
@@ -74,12 +80,17 @@ public class EmployeeRoster {
         for (int i = 0; i < count; i++) {
             if (empList[i] != null && id == empList[i].getEmpID()) {
                 Employee removed = empList[i];
-                empList[i] = null;
+
+                for (int j = i; j < count; j++) {
+                    empList[j] = empList[j + 1];
+                }
+
+                empList[count - 1] = null;
                 count--;
                 return removed;
             }
         }
-        System.out.println("EMPLOYEE #" + id + " NOT FOUND!");
+        System.out.println("Employee with ID #" + id + " is not found!");
         return null;
     }
 
@@ -96,7 +107,6 @@ public class EmployeeRoster {
             }
         }
         return match;
-
     }
 
     public int countHourlyEmployee() {
@@ -144,64 +154,50 @@ public class EmployeeRoster {
     }
 
     public void displayEmployeeByType(String type) {
-        String displayMessage = "";
-
-        switch (type.toUpperCase().charAt(0)) {
-            case 'H':
-                displayMessage = "Displaying Hourly Employees: \n";
-                break;
-            case 'C':
-                displayMessage = "Displaying Commission Employees: \n";
-                break;
-            case 'B':
-                displayMessage = "Displaying Base Plus Commission Employees: \n";
-                break;
-            case 'P':
-                displayMessage = "Displaying Piece Worker Employees: \n";
-                break;
-            default:
-                System.out.println("Unknown employee type: " + type);
-                return;
-        }
+        String displayMessage = switch (type.toUpperCase().charAt(0)) {
+            case 'H' ->
+                "Displaying Hourly Employees:";
+            case 'P' ->
+                "Displaying Piece Worker Employees:";
+            case 'C' ->
+                "Displaying Commission Employees";
+            case 'B' ->
+                "Displaying Base Plus Commission Employees";
+            default ->
+                "Unknown type";
+        };
 
         System.out.println(displayMessage);
 
         for (Employee employee : empList) {
             if (employee != null) {
-                switch (type.toUpperCase().charAt(0)) {
-                    case 'H':
-                        if (employee instanceof HourlyEmployee) {
-                            employee.displayInfo();
-                            System.out.println("");
-                        }
-                        break;
-                    case 'C':
-                        if (employee instanceof CommissionEmployee) {
-                            employee.displayInfo();
-                            System.out.println("");
-                        }
-                        break;
-                    case 'B':
-                        if (employee instanceof BasePlusCommissionEmployee) {
-                            employee.displayInfo();
-                            System.out.println("");
-                        }
-                        break;
-                    case 'P':
-                        if (employee instanceof PieceWorkerEmployee) {
-                            employee.displayInfo();
-                            System.out.println("");
-                        }
-                        break;
+                if (matchEmployeeType(employee, type)) {
+                    employee.displayInfo();
+                    System.out.println();
                 }
             }
         }
     }
 
-    public void updateEmpInfo(int id, String prefix, String firstName, String middleName, String lastName, String suffix) {
-        for (int i = 0; i < count; i++) {
-            if (empList[i] != null && id == empList[i].getEmpID()) {
-                Name empName = empList[i].getEmpName();
+    private boolean matchEmployeeType(Employee employee, String type) {
+        return switch (type.toUpperCase().charAt(0)) {
+            case 'H' ->
+                employee instanceof HourlyEmployee;
+            case 'P' ->
+                employee instanceof PieceWorkerEmployee;
+            case 'C' ->
+                employee instanceof CommissionEmployee;
+            case 'B' ->
+                employee instanceof BasePlusCommissionEmployee;
+            default ->
+                false;
+        };
+    }
+
+    public boolean updateEmpInfo(int id, String prefix, String firstName, String middleName, String lastName, String suffix) {
+        for (Employee employee : empList) {
+            if (employee != null && id == employee.getEmpID()) {
+                Name empName = employee.getEmpName();
                 if (prefix != null) {
                     empName.setTitle(prefix);
                 }
@@ -218,10 +214,11 @@ public class EmployeeRoster {
                     empName.setSuffix(suffix);
                 }
                 System.out.println("Name updated for Employee #" + id);
-                return;
+                return true;
             }
         }
-        System.out.println("Employee #" + id + "does not exist!");
+        System.out.println("Employee #" + id + " does not exist!");
+        return false;
     }
 
 }

@@ -77,7 +77,8 @@ public class CommissionEmployee extends Employee {
                 + "\nTotal Pieces Finished: " + getTotalPiecesFinished()
                 + "\nTotal Sales: " + getTotalSales()
                 + "\nRate per Piece: $" + getRatePerPiece()
-                + "\nSalary: $" + computeSalary();
+                + "\nSalary: $" + computeSalary()
+                + "\n";
 
     }
 }
