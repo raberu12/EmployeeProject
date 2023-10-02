@@ -83,7 +83,7 @@ public class TestMain {
                 LocalDate.of(2003, 9, 22),
                 2000, 150, 100, 500);
 
-        Employee update = new PieceWorkerEmployee(name5,
+        Employee update = new PieceWorkerEmployee(name6,
                 LocalDate.of(2023, 7, 3),
                 LocalDate.of(2003, 9, 22),
                 300.0f, 200.0f);
