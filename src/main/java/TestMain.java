@@ -4,7 +4,8 @@ import java.time.LocalDate;
 //import employee.version1.*;
 //import version2.*;
 //import version3.*;
-import version4.*;
+//import version4.*;
+import version5.*;
 
 /**
  *
@@ -46,6 +47,11 @@ public class TestMain {
                 .middleName("Doble")
                 .suffix("II");
 
+        Name name6 = new Name()
+                .firstName("Matt Vincent")
+                .lastName("Magdadaro")
+                .title("Engr.");
+
         Employee P = new HourlyEmployee(416, name5,
                 LocalDate.of(2023, 7, 8),
                 LocalDate.of(2003, 12, 3),
@@ -77,6 +83,11 @@ public class TestMain {
                 LocalDate.of(2003, 9, 22),
                 2000, 150, 100, 500);
 
+        Employee update = new PieceWorkerEmployee(name5,
+                LocalDate.of(2023, 7, 3),
+                LocalDate.of(2003, 9, 22),
+                300.0f, 200.0f);
+
 //        C.displayInfo();
 //        System.out.println("");
         roster.addEmployee(B);
@@ -94,16 +105,16 @@ public class TestMain {
         search = roster.searchEmployee("Ipong");
         search.displayAllEmployees();
         roster.displayAllEmployees();
-        roster.updateEmpInfo(416, "Dr.", "Samantha", "Doble", "Ipong", null);
+        roster.updateEmployee(416, update);
         P.displayInfo();
-        System.out.println("There are " + roster.countHourlyEmployee() + " Hourly Employees");
+        System.out.println("There are " + roster.countHourlyEmployee() + " Hourly Employees\n");
         roster.removeEmployee(416);
         roster.displayAllEmployees();
-        System.out.println("There are " + roster.countHourlyEmployee() + " Hourly Employees");
+        System.out.println("There are " + roster.countHourlyEmployee() + " Hourly Employees\n");
         roster.removeEmployee(123);
-        System.out.println("There are " + roster.countHourlyEmployee() + " Hourly Employees");
-        System.out.println("There are " + roster.countCommissionEmployee() + " Commission Employees");
-        System.out.println("There are " + roster.countBasePlusCommisionEmployee() + " Base Plus Commission Employees");
+        System.out.println("There are " + roster.countHourlyEmployee() + " Hourly Employees\n");
+        System.out.println("There are " + roster.countCommissionEmployee() + " Commission Employees\n");
+        System.out.println("There are " + roster.countBasePlusCommisionEmployee() + " Base Plus Commission Employees\n");
 
 //        System.out.println("");
 //        

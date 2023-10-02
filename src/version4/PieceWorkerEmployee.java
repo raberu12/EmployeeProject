@@ -14,6 +14,12 @@ public class PieceWorkerEmployee extends Employee {
     public PieceWorkerEmployee() {
     }
 
+    public PieceWorkerEmployee(Name empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, float ratePerPiece) {
+        super(empName, empDateHired, empBirthDate);
+        this.totalPiecesFinished = totalPiecesFinished;
+        this.ratePerPiece = ratePerPiece;
+    }
+
     public PieceWorkerEmployee(float totalPiecesFinished, float ratePerPiece) {
         this.totalPiecesFinished = totalPiecesFinished;
         this.ratePerPiece = ratePerPiece;

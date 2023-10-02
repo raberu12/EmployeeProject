@@ -1,4 +1,4 @@
-package version4;
+package version5;
 
 import java.time.LocalDate;
 
@@ -21,8 +21,6 @@ public class CommissionEmployee extends Employee {
         this.totalSales = totalSales;
         this.ratePerPiece = ratePerPiece;
     }
-    
-    
 
     public CommissionEmployee(float totalPiecesFinished, double totalSales, float ratePerPiece) {
         this.totalPiecesFinished = totalPiecesFinished;

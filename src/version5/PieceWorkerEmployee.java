@@ -1,4 +1,4 @@
-package version4;
+package version5;
 
 import java.time.LocalDate;
 
@@ -6,34 +6,28 @@ import java.time.LocalDate;
  *
  * @author Matt
  */
-public class CommissionEmployee extends Employee {
+public class PieceWorkerEmployee extends Employee {
 
     private float totalPiecesFinished;
-    private double totalSales;
     private float ratePerPiece;
 
-    public CommissionEmployee() {
+    public PieceWorkerEmployee() {
     }
 
-    public CommissionEmployee(Name empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, double totalSales, float ratePerPiece) {
+    public PieceWorkerEmployee(Name empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, float ratePerPiece) {
         super(empName, empDateHired, empBirthDate);
         this.totalPiecesFinished = totalPiecesFinished;
-        this.totalSales = totalSales;
         this.ratePerPiece = ratePerPiece;
     }
-    
-    
 
-    public CommissionEmployee(float totalPiecesFinished, double totalSales, float ratePerPiece) {
+    public PieceWorkerEmployee(float totalPiecesFinished, float ratePerPiece) {
         this.totalPiecesFinished = totalPiecesFinished;
-        this.totalSales = totalSales;
         this.ratePerPiece = ratePerPiece;
     }
 
-    public CommissionEmployee(int empID, Name empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, double totalSales, float ratePerPiece) {
+    public PieceWorkerEmployee(int empID, Name empName, LocalDate empDateHired, LocalDate empBirthDate, float totalPiecesFinished, float ratePerPiece) {
         super(empID, empName, empDateHired, empBirthDate);
         this.totalPiecesFinished = totalPiecesFinished;
-        this.totalSales = totalSales;
         this.ratePerPiece = ratePerPiece;
     }
 
@@ -45,14 +39,6 @@ public class CommissionEmployee extends Employee {
         this.totalPiecesFinished = totalPiecesFinished;
     }
 
-    public double getTotalSales() {
-        return totalSales;
-    }
-
-    public void setTotalSales(double totalSales) {
-        this.totalSales = totalSales;
-    }
-
     public float getRatePerPiece() {
         return ratePerPiece;
     }
@@ -62,17 +48,9 @@ public class CommissionEmployee extends Employee {
     }
 
     public double computeSalary() {
-        double rate = 0.05;
-
-        if (totalSales < 100_000) {
-            rate = 0.20;
-        } else if (totalSales < 500_000) {
-            rate = 0.30;
-        } else {
-            rate = 0.50;
-        }
-
-        return totalSales * rate;
+        double salary = getTotalPiecesFinished() * getRatePerPiece();
+        double bonusAmount = (getTotalPiecesFinished() / 100.0) * (getRatePerPiece() * 10);
+        return salary + bonusAmount;
     }
 
     @Override
@@ -84,8 +62,7 @@ public class CommissionEmployee extends Employee {
     public String toString() {
         return super.toString()
                 + "\nTotal Pieces Finished: " + getTotalPiecesFinished()
-                + "\nTotal Sales: " + getTotalSales()
-                + "\nRate per Piece: $" + getRatePerPiece()
+                + "\nRate per piece: " + getRatePerPiece()
                 + "\nSalary: $" + computeSalary()
                 + "\n";
 

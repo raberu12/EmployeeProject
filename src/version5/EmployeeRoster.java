@@ -1,4 +1,7 @@
-package version4;
+package version5;
+
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -6,47 +9,26 @@ package version4;
  */
 public class EmployeeRoster {
 
-    private Employee[] empList;
-    private int count = 0;
-    private int size = 10;
+    private List<Employee> empList;
 
     public EmployeeRoster() {
-        empList = new Employee[size];
+        empList = new ArrayList<>();
     }
 
-    public EmployeeRoster(Employee[] empList) {
-        this.empList = new Employee[size];
+    public EmployeeRoster(List<Employee> empList) {
         this.empList = empList;
-    }
-
-    public EmployeeRoster(Employee[] empList, int size) {
-        this.empList = empList;
-        this.size = size;
-        this.empList = new Employee[size];
     }
 
     public int getSize() {
-        return size;
+        return empList.size();
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public Employee[] getEmpList() {
+    public List<Employee> getEmpList() {
         return empList;
     }
 
-    public void setEmpList(Employee[] empList) {
+    public void setEmpList(List<Employee> empList) {
         this.empList = empList;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public void displayAllEmployees() {
@@ -65,29 +47,23 @@ public class EmployeeRoster {
     }
 
     public boolean addEmployee(Employee e) {
-        if (count < size) {
-            empList[count] = e;
-            count++;
-            System.out.println("EMPLOYEE " + e.getEmpName().getLastName() + " WITH ID #" + e.getEmpID() + " added");
+        if (empList.size() < 10) {
+            empList.add(e);
+            System.out.println("EMPLOYEE " + e.getEmpName().getLastName() + " WITH ID #" + e.getEmpID() + " added\n");
             return true;
         } else {
-            System.out.println("Roster is full.");
+            System.out.println("Roster is full.\n");
             return false;
         }
     }
 
     public Employee removeEmployee(int id) {
-        for (int i = 0; i < count; i++) {
-            if (empList[i] != null && id == empList[i].getEmpID()) {
-                Employee removed = empList[i];
-
-                for (int j = i; j < count; j++) {
-                    empList[j] = empList[j + 1];
-                }
-
-                empList[count - 1] = null;
-                count--;
-                return removed;
+        Employee removedEmp = null;
+        for (Employee employee : empList) {
+            if (id == employee.getEmpID()) {
+                removedEmp = employee;
+                System.out.println("Employee # " + id + " removed!\n");
+                return removedEmp;
             }
         }
         System.out.println("Employee with ID #" + id + " is not found!");
@@ -196,14 +172,15 @@ public class EmployeeRoster {
     }
 
     public boolean updateEmployee(int id, Employee updatedEmp) {
-        for (int i = 0; i < count; i++) {
-            if (empList[i] != null && id == empList[i].getEmpID()) {
-                empList[i] = updatedEmp;
-                System.out.println("Employee #" + id + " updated");
+        for (int i = 0; i < empList.size(); i++) {
+            Employee employee = empList.get(i);
+            if (employee != null && id == employee.getEmpID()) {
+                empList.set(i, updatedEmp);
+                System.out.println("Employee #" + id + " updated\n");
                 return true;
             }
         }
-        System.out.println("Employee #" + id + " not found!");
+        System.out.println("Employee #" + id + " not found!\n");
         return false;
     }
 }
